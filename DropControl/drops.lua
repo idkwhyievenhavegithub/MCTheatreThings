@@ -55,6 +55,9 @@ local function move(amount,direction,gospeed) -- Function to move the drop the c
     if amount == nil then
         return nil
     end
+    if direction == nil then
+        return nil
+    end
     gospeed = translate_speed(gospeed)
     if direction == "in" then
         translated_speed = -gospeed
@@ -84,6 +87,10 @@ end
 
 local function calc_pos(wanted_pos) --Calculate how many blocks the node needs to move to get to requested position
     current_pos = pos_file_util("get")
+    if current_pos == wanted_pos then
+        direction = "none"
+        amt = 0
+    end
     if current_pos > wanted_pos then
         direction = "out"
         amt = current_pos-wanted_pos
@@ -91,6 +98,8 @@ local function calc_pos(wanted_pos) --Calculate how many blocks the node needs t
         direction = "in"
         amt = wanted_pos-current_pos
     end
+
+
     return {amt,direction}
 end
 
@@ -135,9 +144,7 @@ while true do
 
         elseif cmd_res[2] == "complete_out" then
             local calcs = calc_pos(complete_out)
-            print(calcs[1])
-            print(calcs[2])
-            --move(calcs[1],calcs[2],move_speed)
+            move(calcs[1],calcs[2],move_speed)
             pos_file_util("set",complete_out)
 
         elseif cmd_res[2] == "custom" then
