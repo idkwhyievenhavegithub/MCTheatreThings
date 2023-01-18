@@ -108,7 +108,7 @@ end
 -- Start 
 
 print(config_reader("config.json"))  -- Loads Config
-rednet.host(node_protocol,tostring(node_id)) -- Hosts node on the rednet network for lookup
+rednet.host(node_protocol,"NODE:"..tostring(node_id)) -- Hosts node on the rednet network for lookup
 os.setComputerLabel("ONLINE: "..node_protocol.." as ID: "..node_id)
 print("\nNode Running on Protocol: "..node_protocol.."\nAs Node ID: "..tostring(node_id))
 
