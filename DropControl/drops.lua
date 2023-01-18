@@ -135,7 +135,9 @@ while true do
 
         elseif cmd_res[2] == "complete_out" then
             local calcs = calc_pos(complete_out)
-            move(calcs[1],calcs[2],move_speed)
+            print(calcs[1])
+            print(calcs[2])
+            --move(calcs[1],calcs[2],move_speed)
             pos_file_util("set",complete_out)
 
         elseif cmd_res[2] == "custom" then
