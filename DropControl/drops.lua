@@ -113,7 +113,7 @@ os.setComputerLabel("ONLINE: "..node_protocol.." as ID: "..node_id)
 print("\nNode Running on Protocol: "..node_protocol.."\nAs Node ID: "..tostring(node_id))
 
 -- Node should be ready for commands now
-repeat
+while true do
     local senderId, command, protocol = rednet.receive(node_protocol) -- Waits for Rednet command with the node protocol
     local cmd_res = command_handler(command) -- Decodes JSON info from recieved command
     if command_logic_process(cmd_res[1]) then
@@ -156,7 +156,7 @@ repeat
     
 
     
-until x == "yeahmate"
+end
 
 
 
